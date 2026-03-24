@@ -1,0 +1,143 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #0f172a;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden; /* We manage scrolling per view */
+}
+
+button {
+  font: inherit;
+}
+
+/* Hide scrollbar for a clean mobile app feel */
+::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.tab-view {\n  height: 100%;\n  overflow-y: auto;\n}
+
+/* Glass effect for active elements */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Base Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-view.active {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99,102,241,0.6); transform: scale(1); }
+  50% { box-shadow: 0 0 35px rgba(99,102,241,1); transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* --- TELEGRAM-STYLE PREMIUM ANIMATIONS --- */
+
+@keyframes tg-spring {
+  0% { transform: scale(0.2); opacity: 0; }
+  50% { transform: scale(1.3); opacity: 1; }
+  75% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.tg-spring-in {
+  animation: tg-spring 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes tg-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.02); }
+}
+
+.tg-floating {
+  animation: tg-float 3.5s ease-in-out infinite;
+}
+
+@keyframes tg-spin-rays {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.tg-rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200vw;
+  height: 200vw;
+  background: repeating-conic-gradient(from 0deg, transparent 0deg 15deg, rgba(255, 255, 255, 0.06) 15deg 30deg);
+  mask-image: radial-gradient(circle, white 0%, transparent 40%);
+  -webkit-mask-image: radial-gradient(circle, white 0%, transparent 40%);
+  animation: tg-spin-rays 30s linear infinite;
+}
+
+@keyframes tg-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg) scale(1); }
+  20% { transform: translateX(-8px) rotate(-8deg) scale(1.05); }
+  40% { transform: translateX(8px) rotate(8deg) scale(1.05); }
+  60% { transform: translateX(-8px) rotate(-8deg) scale(1.05); }
+  80% { transform: translateX(8px) rotate(8deg) scale(1.05); }
+}
+
+.tg-shaking {
+  animation: tg-shake 0.4s ease-in-out infinite;
+}
+
+@keyframes flash-white {
+  0% { background-color: rgba(255,255,255,0); backdrop-filter: brightness(1); }
+  30% { background-color: rgba(255,255,255,0.95); backdrop-filter: brightness(2); }
+  100% { background-color: rgba(255,255,255,0); backdrop-filter: brightness(1); }
+}
+
+.flash-overlay {
+  animation: flash-white 1.2s ease-out forwards;
+}
+
+/* --- 3D ITEM ANIMATIONS (IDLE) --- */
+@keyframes float-3d {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(4deg); }
+}
+.animate-float-3d {
+  animation: float-3d 3.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float-3d-alt {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(-4deg); }
+}
+.animate-float-3d-alt {
+  animation: float-3d-alt 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float-simple {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.animate-float-simple {
+  animation: float-simple 3s ease-in-out infinite;
+  will-change: transform;
+           }
