@@ -5,7 +5,7 @@ const path = require('path');
 const { Telegraf } = require('telegraf');
 
 // --- КОНФИГУРАЦИЯ ---
-const BOT_TOKEN = '7962893528:AAF5ikJWt5k6_CP2ugwVimqpUaybPB3hhO8';
+const BOT_TOKEN = '7962893528:AAHtlfvlbXV8M5j83NAdYusTxVvbIrQfceU';
 const MONGO_URI = 'mongodb+srv://prize:narek5551@cluster0.ucx8kac.mongodb.net/?appName=Cluster0';
 // ВАЖНО ДЛЯ RENDER: всегда использовать process.env.PORT
 const PORT = process.env.PORT || 3000;
