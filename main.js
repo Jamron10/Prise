@@ -28,22 +28,15 @@ const SKINS = [
 ];
 
 const MOCK_LEADERBOARD = [
-  { name: 'Artem K.', friends: 156, avatar: 'A', bg: 'from-blue-500 to-cyan-500' },
-  { name: 'Max (Premium)', friends: 89, avatar: 'M', bg: 'from-fuchsia-500 to-pink-500' },
-  { name: 'Elena V.', friends: 42, avatar: 'E', bg: 'from-emerald-500 to-teal-500' },
-  { name: 'Dmitry', friends: 28, avatar: 'D', bg: 'from-orange-500 to-red-500' },
-  { name: 'Alex', friends: 15, avatar: 'A', bg: 'from-indigo-500 to-purple-500' }
 ];
 
 const MOCK_WITHDRAWALS = [
-  { id: 'req_101', userId: '1004', userName: 'Dmitry', prizeId: 'gift', status: 'pending', date: new Date().toISOString() },
-  { id: 'req_102', userId: '1002', userName: 'Maria K.', prizeId: 'teddy', status: 'approved', date: new Date(Date.now() - 86400000).toISOString() }
 ];
 
 // ==========================================
 // НАСТРОЙКИ СЕРВЕРА
 const USE_BACKEND = false; 
-const API_URL = 'http://localhost:3000/api'; 
+const API_URL = 'https://prise-11.onrender.com/api'; 
 // ==========================================
 
 let currentUserId = 'player' + Math.floor(Math.random() * 10000);
