@@ -1,17 +1,3 @@
-// ==========================================
-// ВНИМАНИЕ: ЭТОТ ФАЙЛ НЕ ЗАПУСКАЕТСЯ ЗДЕСЬ В ПЛЕЕРЕ!
-// Это бэкенд на Node.js. Вы должны скопировать этот код,
-// разместить его на своем сервере (VPS, Render, Heroku и т.д.)
-// и запустить через Node.js.
-// ==========================================
-// Инструкция по запуску на вашем компьютере/сервере:
-// 1. Установите Node.js
-// 2. В папке с проектом выполните: npm init -y
-// 3. Выполните: npm install express mongoose cors telegraf
-// 4. Замените BOT_TOKEN и MONGO_URI на свои
-// 5. Запустите: node server.js
-// ==========================================
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -20,8 +6,9 @@ const { Telegraf } = require('telegraf');
 
 // --- КОНФИГУРАЦИЯ ---
 const BOT_TOKEN = '7962893528:AAF5ikJWt5k6_CP2ugwVimqpUaybPB3hhO8';
-const MONGO_URI = 'mongodb+srv://prize:narek5551@cluster0.ucx8kac.mongodb.net/?appName=Cluster0'; // Ваша ссылка на MongoDB
-const PORT = 3000;
+const MONGO_URI = 'mongodb+srv://prize:narek5551@cluster0.ucx8kac.mongodb.net/?appName=Cluster0';
+// ВАЖНО ДЛЯ RENDER: всегда использовать process.env.PORT
+const PORT = process.env.PORT || 3000;
 
 // Инициализация
 const app = express();
@@ -29,18 +16,20 @@ const bot = new Telegraf(BOT_TOKEN);
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
-
+// --- РАЗДАЧА ФРОНТЕНДА ---
+// Эта строка автоматически раздаст index.html, main.js, styles.css и папку locales
+app.use(express.static(__dirname));
 
 // --- СХЕМА MONGODB ---
 const userSchema = new mongoose.Schema({
   telegramId: { type: String, required: true, unique: true },
   name: { type: String, default: 'Игрок' },
-  spins: { type: Number, default: 3 },      // Стартовые билеты
-  friends: { type: Number, default: 0 },    // Приглашенные друзья
-  inventory: { type: Map, of: Number, default: {} }, // Призы
+  spins: { type: Number, default: 3 },      
+  friends: { type: Number, default: 0 },    
+  inventory: { type: Map, of: Number, default: {} }, 
   activeSkin: { type: String, default: 'normal' },
   tasks: { type: Map, of: Boolean, default: {} },
-  referredBy: { type: String, default: null }, // Кто пригласил
+  referredBy: { type: String, default: null }, 
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -56,20 +45,17 @@ bot.start(async (ctx) => {
   try {
     const tgId = ctx.from.id.toString();
     const name = ctx.from.first_name || 'Игрок';
-    const startPayload = ctx.payload; // Параметр из ссылки (например, ID друга)
+    const startPayload = ctx.payload; 
 
     let user = await User.findOne({ telegramId: tgId });
 
     if (!user) {
-      // Новый пользователь
       user = new User({ telegramId: tgId, name });
 
-      // Если есть реферал и это не сам пользователь
       if (startPayload && startPayload !== tgId) {
         const referrer = await User.findOne({ telegramId: startPayload });
         if (referrer) {
           user.referredBy = startPayload;
-          // Даем награду пригласившему: +1 билет, +1 друг
           referrer.friends += 1;
           referrer.spins += 1;
           await referrer.save();
@@ -80,7 +66,6 @@ bot.start(async (ctx) => {
       await user.save();
     }
 
-    // Отправляем кнопку для запуска Mini App
     ctx.reply('Привет! Жми на кнопку ниже, чтобы крутить Колесо Подарков 🎁', {
       reply_markup: {
         inline_keyboard: [[
@@ -94,22 +79,14 @@ bot.start(async (ctx) => {
   }
 });
 
-// Запускаем бота
 bot.launch();
 
 // --- API ДЛЯ ФРОНТЕНДА ---
 
-// Раздаем файлы визуального интерфейса (Фронтенд)
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/main.js', (req, res) => res.sendFile(path.join(__dirname, 'main.js')));
-app.get('/styles.css', (req, res) => res.sendFile(path.join(__dirname, 'styles.css')));
-
-// 1. Получить состояние пользователя
 app.get('/api/state/:tgId', async (req, res) => {
   try {
     let user = await User.findOne({ telegramId: req.params.tgId });
     if (!user) {
-      // Если по какой-то причине юзера нет (не нажимал /start), создаем базового
       user = await User.create({ telegramId: req.params.tgId });
     }
     res.json(user);
@@ -118,7 +95,6 @@ app.get('/api/state/:tgId', async (req, res) => {
   }
 });
 
-// 2. Синхронизировать инвентарь/скины/задания
 app.post('/api/sync', async (req, res) => {
   try {
     const { telegramId, activeSkin, tasks } = req.body;
@@ -132,7 +108,6 @@ app.post('/api/sync', async (req, res) => {
   }
 });
 
-// 3. Крутить колесо (логика призов на бэкенде для безопасности)
 app.post('/api/spin', async (req, res) => {
   try {
     const { telegramId } = req.body;
@@ -142,10 +117,8 @@ app.post('/api/spin', async (req, res) => {
       return res.status(400).json({ error: 'Недостаточно билетов' });
     }
 
-    // Списываем билет
     user.spins -= 1;
 
-    // Шансы выпадения (копия из фронтенда)
     const PRIZES = [
       { id: 'heart_ribbon', weight: 100 },
       { id: 'teddy', weight: 80 },
@@ -172,20 +145,17 @@ app.post('/api/spin', async (req, res) => {
       random -= p.weight;
     }
 
-    // Добавляем приз в инвентарь
     const currentAmount = user.inventory.get(winningPrizeId) || 0;
     user.inventory.set(winningPrizeId, currentAmount + 1);
     
     await user.save();
 
-    // Возвращаем ID выигранного приза фронтенду
     res.json({ success: true, prizeId: winningPrizeId, spinsLeft: user.spins });
   } catch (err) {
     res.status(500).json({ error: 'Ошибка сервера' });
   }
 });
 
-// 4. Выполнить задание
 app.post('/api/task', async (req, res) => {
   try {
     const { telegramId, taskId, reward } = req.body;
