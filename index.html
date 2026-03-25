@@ -19,22 +19,25 @@
 <body class="text-slate-100 flex flex-col h-[100dvh] main-bg overflow-hidden">
   <!-- Top Bar -->
   <header class="flex justify-between items-center p-4 z-10 shrink-0 relative">
-    <div class="flex items-center gap-3">
-      <div id="user-avatar" class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl shadow-[0_0_15px_rgba(99,102,241,0.3)] border border-white/10">
+    <div id="btn-user-profile" class="flex items-center gap-2.5 cursor-pointer p-1.5 pr-3.5 -ml-1.5 rounded-full bg-slate-800/60 hover:bg-slate-700/80 border border-white/10 transition-all active:scale-95 group animate-fade-in-up shadow-sm backdrop-blur-md" style="animation-delay: 0.05s;">
+      <div id="user-avatar" class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl shadow-[0_0_15px_rgba(99,102,241,0.3)] border border-white/20 group-hover:scale-105 transition-transform shrink-0">
         🧑‍🚀
       </div>
-      <div>
-        <div id="user-name" class="font-bold text-sm leading-tight text-white" data-i18n="app.player">Player 1</div>
-        <div class="text-[10px] tracking-widest text-indigo-400 font-bold uppercase mt-0.5" data-i18n="app.status">Игрок</div>
+      <div class="flex flex-col justify-center">
+        <div id="user-name" class="font-bold text-[13px] leading-tight text-white mb-0.5 drop-shadow-sm truncate max-w-[100px]" data-i18n="app.player">Player 1</div>
+        <div class="flex items-center gap-1">
+          <span class="text-[9px] tracking-widest text-indigo-200 font-bold uppercase bg-indigo-500/30 border border-indigo-400/30 px-1.5 py-0.5 rounded-md leading-none shadow-inner" data-i18n="app.profileBtn">Профиль</span>
+          <svg class="w-3 h-3 text-indigo-300 group-hover:translate-x-0.5 transition-transform drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+        </div>
       </div>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 animate-fade-in-up" style="animation-delay: 0.15s;">
       <!-- Tickets Balance Pill -->
-      <div class="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-white/10 shadow-inner">
+      <div class="flex items-center gap-1.5 bg-gradient-to-b from-yellow-400/20 to-amber-600/20 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-yellow-400/50 shadow-[0_0_15px_rgba(250,204,21,0.25)] transition-transform hover:scale-105 cursor-default">
         <span class="text-sm drop-shadow-md">🎟️</span>
-        <span id="ticket-balance" class="font-bold text-white text-sm min-w-[12px] text-center">0</span>
+        <span id="ticket-balance" class="font-black text-yellow-400 text-sm min-w-[12px] text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">0</span>
       </div>
-      <button id="btn-settings" class="w-9 h-9 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-white/10 transition backdrop-blur-md border border-white/10 text-slate-300">
+      <button id="btn-settings" class="w-9 h-9 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-white/10 transition backdrop-blur-md border border-white/10 text-slate-300 active:scale-90">
         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
       </button>
     </div>
@@ -44,19 +47,17 @@
   <main class="flex-1 relative w-full max-w-md mx-auto min-h-0 overflow-hidden">
     
     <!-- VIEW: GAME -->
-    <div id="view-game" class="tab-view active w-full h-full overflow-y-auto flex flex-col items-center justify-between px-4 pb-6 pt-2 relative">
-      
-      <!-- Glowing background behind wheel -->
+    <div id="view-game" class="tab-view active w-full h-full overflow-y-auto flex flex-col items-center justify-between px-4 pb-20 pt-2 relative">
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180vw] h-[100vw] max-w-[800px] wheel-container-glow pointer-events-none z-0"></div>
 
       <!-- Title -->
-      <div class="text-center z-10 shrink-0 mt-4">
+      <div class="text-center z-10 shrink-0 mt-4 animate-fade-in-up" style="animation-delay: 0.1s;">
         <h1 class="text-[32px] leading-tight font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-indigo-200 drop-shadow-md tracking-tight" data-i18n="app.title">Колесо подарков</h1>
         <p class="text-[13px] text-indigo-300/80 font-bold mt-1 tracking-widest uppercase" data-i18n="app.taskSubTitle">Испытай удачу</p>
       </div>
 
       <!-- Wheel Container -->
-      <div class="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] shrink-0 z-10 my-8 mx-auto">
+      <div class="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] shrink-0 z-10 my-8 mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
         <!-- Outer Animated Rim -->
         <div class="absolute inset-[-16px] rounded-full bg-gradient-to-br from-slate-800 to-[#020617] shadow-[0_15px_35px_rgba(0,0,0,0.8)] border border-slate-700/50 flex items-center justify-center">
           <div class="absolute inset-[6px] rounded-full border-[4px] border-dashed border-indigo-400/30 animate-spin" style="animation-duration: 30s;"></div>
@@ -83,7 +84,6 @@
         
         <!-- The Wheel Outer Ring -->
         <div class="w-full h-full rounded-full p-1.5 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] relative z-20">
-          
           <!-- Inner Wheel Border -->
           <div class="w-full h-full rounded-full shadow-[inset_0_10px_20px_rgba(0,0,0,0.8)] relative overflow-hidden bg-slate-900 border-[3px] border-slate-900 transition-colors duration-500" id="wheel-wrapper">
             <!-- Rotating Wheel -->
@@ -100,32 +100,129 @@
       </div>
       
       <!-- Spin Button -->
-      <div class="w-full z-10 shrink-0 mt-auto px-4 pb-2">
-        <button id="btn-spin" class="w-full relative group overflow-hidden rounded-[24px] bg-gradient-to-b from-indigo-400 to-indigo-700 p-[3px] shadow-[0_10px_40px_rgba(99,102,241,0.5)] transition-all active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none disabled:grayscale">
-          <div class="bg-gradient-to-b from-indigo-500 to-indigo-800 rounded-[21px] px-2 py-[18px] h-full flex items-center justify-center gap-2 border border-indigo-400/30 relative z-10 shadow-[inset_0_2px_10px_rgba(255,255,255,0.2)]">
-            <span class="font-black text-white text-[18px] tracking-wide drop-shadow-md" id="spin-text">КРУТИТЬ КОЛЕСО</span>
-            <div class="bg-indigo-950/50 rounded-lg px-3 py-1.5 flex items-center gap-1.5 border border-indigo-400/30 shadow-inner">
-              <span id="spin-cost-amount" class="text-white font-bold text-[15px] leading-none">1</span>
+      <div class="w-full z-10 shrink-0 mt-auto px-4 pb-4 animate-fade-in-up" style="animation-delay: 0.3s;">
+        <button id="btn-spin" class="w-full relative group disabled:opacity-50 disabled:grayscale focus:outline-none pb-2 active:scale-[0.98] transition-all">
+          <!-- Deep shadow -->
+          <div class="absolute inset-x-0 bottom-0 top-2 rounded-[24px] bg-indigo-950 shadow-[0_10px_20px_rgba(0,0,0,0.6)] transition-transform duration-100 ease-in-out group-active:translate-y-1"></div>
+          <!-- Top face -->
+          <div class="relative flex items-center justify-center gap-2 bg-gradient-to-b from-indigo-400 to-indigo-600 rounded-[24px] px-2 py-[18px] border-t border-indigo-300/80 border-x border-indigo-400/50 transform group-active:translate-y-2 transition-transform duration-100 ease-in-out shadow-[inset_0_2px_4px_rgba(255,255,255,0.4)] z-10 overflow-hidden">
+            <!-- Premium Shimmer Layer -->
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full animate-[shimmer-slide_3s_infinite] pointer-events-none transform skew-x-12"></div>
+            
+            <span class="font-black text-white text-[18px] tracking-wide drop-shadow-md uppercase relative z-10" id="spin-text" data-i18n="app.spinBtnText">КРУТИТЬ КОЛЕСО</span>
+            <div class="bg-indigo-950/50 rounded-lg px-3 py-1.5 flex items-center gap-1.5 border border-indigo-400/30 shadow-inner relative z-10">
+              <span id="spin-cost-amount" class="text-white font-bold text-[15px] leading-none drop-shadow-sm">1</span>
               <span class="text-[15px] leading-none drop-shadow-sm">🎟️</span>
             </div>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 z-20"></div>
         </button>
       </div>
     </div>
 
     <!-- VIEW: TASKS -->
-    <div id="view-tasks" class="tab-view hidden w-full h-full overflow-y-auto px-4 py-6">
-      <h2 class="text-[28px] font-black tracking-tight mb-1 text-white" data-i18n="app.tasksTitle">Задания</h2>
-      <p class="text-[13px] text-indigo-300/80 mb-6 font-medium" data-i18n="app.taskSubTitle">Выполняйте задания и получайте спины!</p>
+    <div id="view-tasks" class="tab-view hidden w-full h-full overflow-y-auto px-4 py-6 pb-24">
+      <h2 class="text-[28px] font-black tracking-tight mb-1 text-white animate-fade-in-up" style="animation-delay: 0.05s;" data-i18n="app.tasksTitle">Задания</h2>
+      <p class="text-[13px] text-indigo-300/80 mb-6 font-medium animate-fade-in-up" style="animation-delay: 0.1s;" data-i18n="app.taskSubTitle">Выполняйте задания и получайте спины!</p>
       <div id="tasks-list" class="flex flex-col gap-1"></div>
     </div>
 
+    <!-- VIEW: FRIENDS -->
+    <div id="view-friends" class="tab-view hidden w-full h-full overflow-y-auto px-4 py-8 pb-32 relative">
+      <!-- Background Ambient Glows -->
+      <div class="absolute top-0 right-0 w-72 h-72 bg-fuchsia-600/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
+      <div class="absolute bottom-40 left-0 w-72 h-72 bg-indigo-600/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
+
+      <div class="relative z-10">
+        <div class="text-center mb-6 animate-fade-in-up" style="animation-delay: 0.05s;">
+          <h2 class="text-[32px] font-black tracking-tight mb-1 text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-white drop-shadow-md" data-i18n="app.friendsTitle">Ваши друзья</h2>
+          <p class="text-[13px] text-indigo-300/80 font-medium" data-i18n="app.friendsSubTitle">Приглашайте друзей и получайте бонусы!</p>
+        </div>
+
+        <!-- Main Premium Invite Card -->
+        <div class="relative w-full rounded-[32px] p-[1px] mb-8 group animate-fade-in-up" style="animation-delay: 0.1s;">
+          <!-- Animated gradient border -->
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-[32px] opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <!-- Inner card -->
+          <div class="relative bg-slate-900/95 backdrop-blur-2xl rounded-[31px] p-6 text-center overflow-hidden flex flex-col items-center shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+             <!-- Shimmer -->
+             <div class="absolute top-0 -inset-full h-full w-[200%] z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-[shimmer-slide_3s_infinite]"></div>
+             
+             <!-- Glowing elements inside card -->
+             <div class="absolute -right-6 -top-6 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl pointer-events-none transition-transform group-hover:scale-110"></div>
+             <div class="absolute -left-6 -bottom-6 w-32 h-32 bg-indigo-500/30 rounded-full blur-2xl pointer-events-none transition-transform group-hover:scale-110"></div>
+             
+             <div class="relative z-10 w-full flex flex-col items-center">
+                 <div class="w-20 h-20 bg-gradient-to-br from-indigo-500/20 to-fuchsia-500/20 rounded-full flex justify-center items-center mb-3 border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                     <span class="text-5xl drop-shadow-lg animate-float-3d">🤝</span>
+                 </div>
+                 
+                 <div class="text-[54px] leading-none font-black text-white mb-1 tracking-tight drop-shadow-md" id="friends-count-big">0</div>
+                 <div class="text-[11px] text-indigo-200 font-bold uppercase tracking-widest mb-5" data-i18n="app.referralsText">Друзей приглашено</div>
+                 
+                 <div class="inline-flex items-center justify-center gap-2 bg-emerald-500/10 px-4 py-2 rounded-2xl border border-emerald-500/30 mb-6 backdrop-blur-sm shadow-inner group-hover:bg-emerald-500/15 transition-colors">
+                     <span class="text-emerald-400 text-lg">🎟️</span>
+                     <span class="text-emerald-400 font-bold text-sm" data-i18n="app.rewardPerFriend">+1 билет за каждого друга</span>
+                 </div>
+
+                 <!-- 3D Invite Button -->
+                 <button id="btn-invite-main" class="w-full relative active:scale-[0.98] transition-transform duration-150 focus:outline-none">
+                    <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-[20px] blur-md opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 bg-[length:200%_auto] animate-[gradient-x_3s_linear_infinite] rounded-[20px] py-4 flex items-center justify-center gap-2 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] z-10 text-white">
+                      <svg class="w-6 h-6 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                      <span class="font-black text-[17px] drop-shadow-md tracking-wide uppercase" data-i18n="app.inviteBtnFull">Пригласить друга</span>
+                    </div>
+                 </button>
+             </div>
+          </div>
+        </div>
+
+        <!-- Top Referrers -->
+        <div class="mb-10 relative animate-fade-in-up" style="animation-delay: 0.15s;">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="text-[20px] font-black text-white flex items-center gap-2 drop-shadow-sm">
+              <span class="text-2xl">🏆</span> 
+              <span data-i18n="app.leaderboardTitle">Топ рефоводов</span>
+            </h3>
+          </div>
+          <div id="leaderboard-list" class="flex flex-col gap-3 relative z-10">
+              <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- Rewards info (Premium styling) -->
+        <div class="mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+           <h3 class="text-[14px] font-black text-slate-300 mb-4 uppercase tracking-widest flex items-center gap-2 drop-shadow-sm">
+             <span class="text-lg">🎁</span> <span data-i18n="app.friendsRewardsTitle">Награды за друзей</span>
+           </h3>
+           <div class="flex flex-col gap-3">
+             <div class="flex items-center gap-4 bg-gradient-to-r from-slate-900 to-slate-800 p-3.5 rounded-2xl border border-white/5 relative overflow-hidden group hover:bg-slate-800 transition-colors shadow-sm">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-yellow-500 shadow-[0_0_15px_#eab308]"></div>
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-700 to-yellow-900 border border-yellow-500/40 flex items-center justify-center text-2xl shadow-inner shrink-0 group-hover:scale-110 transition-transform">🥇</div>
+                <div class="text-[14px] font-bold text-slate-200 leading-tight" data-i18n="app.rewardGoldSkin">Открывает Золотой скин (1 друг)</div>
+             </div>
+             
+             <div class="flex items-center gap-4 bg-gradient-to-r from-slate-900 to-slate-800 p-3.5 rounded-2xl border border-white/5 relative overflow-hidden group hover:bg-slate-800 transition-colors shadow-sm">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-red-500 shadow-[0_0_15px_#ef4444]"></div>
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-700 to-red-900 border border-red-500/40 flex items-center justify-center text-2xl shadow-inner shrink-0 group-hover:scale-110 transition-transform">🔥</div>
+                <div class="text-[14px] font-bold text-slate-200 leading-tight" data-i18n="app.rewardFireSkin">Открывает Огненный скин (3 друга)</div>
+             </div>
+             
+             <div class="flex items-center gap-4 bg-gradient-to-r from-slate-900 to-slate-800 p-3.5 rounded-2xl border border-white/5 relative overflow-hidden group hover:bg-slate-800 transition-colors shadow-sm">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-500 shadow-[0_0_15px_#06b6d4]"></div>
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-700 to-cyan-900 border border-cyan-500/40 flex items-center justify-center text-2xl shadow-inner shrink-0 group-hover:scale-110 transition-transform">🧊</div>
+                <div class="text-[14px] font-bold text-slate-200 leading-tight" data-i18n="app.rewardGlassSkin">Открывает Стеклянный скин (5 друзей)</div>
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>
+
     <!-- VIEW: PRIZES -->
-    <div id="view-prizes" class="tab-view hidden w-full h-full overflow-y-auto px-4 py-6">
-      <div class="flex items-end justify-between mb-6">
+    <div id="view-prizes" class="tab-view hidden w-full h-full overflow-y-auto px-4 py-6 pb-24">
+      <div class="flex items-end justify-between mb-6 animate-fade-in-up" style="animation-delay: 0.05s;">
         <h2 class="text-[28px] font-black tracking-tight text-white leading-none" data-i18n="app.prizesTitle">Все призы</h2>
-        <button class="text-[13px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-0.5 mb-0.5" onclick="document.querySelector('[data-target=\'view-inventory\']').click()">
+        <button class="text-[13px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-0.5 mb-0.5 active:scale-95" onclick="document.querySelector('[data-target=\'view-inventory\']').click()">
           <span data-i18n="app.tabInv">Инвентарь</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
         </button>
@@ -134,12 +231,12 @@
     </div>
 
     <!-- VIEW: INVENTORY -->
-    <div id="view-inventory" class="tab-view hidden w-full h-full overflow-y-auto px-4 py-6">
-      <div class="flex items-end justify-between mb-6">
+    <div id="view-inventory" class="tab-view hidden w-full h-full overflow-y-auto px-4 py-6 pb-24">
+      <div class="flex items-end justify-between mb-6 animate-fade-in-up" style="animation-delay: 0.05s;">
         <h2 class="text-[28px] font-black tracking-tight text-white leading-none" data-i18n="app.invTitle">Ваш инвентарь</h2>
       </div>
       <div id="inventory-grid" class="grid grid-cols-3 gap-3"></div>
-      <div id="empty-inv" class="hidden flex-col items-center justify-center py-20 text-slate-500">
+      <div id="empty-inv" class="hidden flex-col items-center justify-center py-20 text-slate-500 animate-fade-in-up">
         <span class="text-6xl mb-4 opacity-50 drop-shadow-md">🎒</span>
         <p class="font-medium" data-i18n="app.emptyInv">Инвентарь пока пуст</p>
       </div>
@@ -148,44 +245,226 @@
   </main>
 
   <!-- Bottom Nav -->
-  <nav class="shrink-0 flex justify-around items-center bg-[#0f172a]/90 backdrop-blur-xl border-t border-white/5 pt-2 px-2 z-20 relative" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));">
-    <button class="nav-btn flex flex-col items-center p-2 text-indigo-400 transition-colors" data-target="view-game">
-      <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <nav class="shrink-0 flex justify-around items-center bg-slate-900/80 backdrop-blur-2xl border-t border-white/10 pt-2 px-1 z-20 relative shadow-[0_-10px_40px_rgba(0,0,0,0.4)]" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));">
+    <!-- Animated Indicator -->
+    <div class="absolute top-0 left-0 w-full h-1 flex px-1 z-30 pointer-events-none">
+      <div class="relative w-1/5 h-full">
+        <div id="nav-indicator" class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-indigo-400 to-purple-400 rounded-b-full transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_2px_15px_rgba(129,140,248,0.8)]" style="transform: translateX(0%);"></div>
+      </div>
+    </div>
+    
+    <button class="nav-btn flex flex-col items-center p-2 text-indigo-400 scale-110 -translate-y-1 transition-all duration-300 relative z-10" data-target="view-game">
+      <svg class="w-6 h-6 mb-1 drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       <span class="text-[10px] font-bold tracking-wide" data-i18n="app.tabGame">Игра</span>
     </button>
-    <button class="nav-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-colors" data-target="view-tasks">
+    <button class="nav-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="view-tasks">
       <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
       <span class="text-[10px] font-bold tracking-wide" data-i18n="app.tabTasks">Задания</span>
     </button>
-    <button class="nav-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-colors" data-target="view-prizes">
+    <button class="nav-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="view-friends">
+      <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      <span class="text-[10px] font-bold tracking-wide" data-i18n="app.tabFriends">Друзья</span>
+    </button>
+    <button class="nav-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="view-prizes">
       <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
       <span class="text-[10px] font-bold tracking-wide" data-i18n="app.tabPrizes">Призы</span>
     </button>
-    <button class="nav-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-colors" data-target="view-inventory">
+    <button class="nav-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="view-inventory">
       <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
       <span class="text-[10px] font-bold tracking-wide" data-i18n="app.tabInv">Инвентарь</span>
     </button>
   </nav>
 
   <!-- MODALS -->
-  <div id="modals-container" class="fixed inset-0 z-50 pointer-events-none flex items-center justify-center p-4">
+  <div id="modals-container" class="fixed inset-0 z-[200] pointer-events-none flex items-center justify-center p-4">
+    <!-- Profile Modal -->
+    <div id="modal-profile" class="modal-overlay absolute inset-0 opacity-0 transition-opacity duration-300 hidden pointer-events-auto flex items-center justify-center p-4">
+      <div class="bg-slate-900/95 backdrop-blur-2xl rounded-[32px] p-0 w-full max-w-sm border border-slate-600/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh] overflow-hidden relative" id="modal-profile-content">
+        <!-- Animated Background Glows -->
+        <div class="absolute -top-20 -left-20 w-60 h-60 bg-indigo-500/20 rounded-full blur-[60px] pointer-events-none"></div>
+        <div class="absolute -bottom-20 -right-20 w-60 h-60 bg-purple-500/20 rounded-full blur-[60px] pointer-events-none"></div>
+
+        <div class="flex justify-between items-center p-6 pb-4 shrink-0 relative z-10">
+          <h3 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm" data-i18n="profile.title">Профиль</h3>
+          <button class="close-modal w-8 h-8 flex justify-center items-center bg-slate-800/80 backdrop-blur-md rounded-full text-slate-400 hover:bg-slate-700 hover:text-white transition shadow-sm border border-white/5 z-20">✕</button>
+        </div>
+        
+        <div class="overflow-y-auto flex-1 min-h-0 px-6 pb-6 scrollbar-hide overscroll-contain relative z-10">
+          <div class="flex flex-col items-center mb-8 mt-2 animate-fade-in-up" style="animation-delay: 0.1s;">
+            <div class="relative group cursor-default">
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[30px] blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div id="profile-avatar" class="relative w-24 h-24 rounded-[30px] bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-5xl shadow-[inset_0_0_20px_rgba(255,255,255,0.2)] border-2 border-white/20 mb-4 transform transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3 overflow-hidden">
+                    🧑‍🚀
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer-slide_1.5s_infinite] rounded-[30px] pointer-events-none"></div>
+            </div>
+            
+            <div id="profile-name" class="text-[26px] font-black text-white leading-tight text-center tracking-tight mb-2 drop-shadow-md">Player 1</div>
+            
+            <button id="profile-id-btn" class="flex items-center gap-2 text-[12px] text-indigo-300 font-bold uppercase tracking-widest mt-1 font-mono bg-indigo-950/60 hover:bg-indigo-900/80 px-3.5 py-2 rounded-xl border border-indigo-500/30 transition-all active:scale-95 shadow-inner group w-auto max-w-full overflow-hidden focus:outline-none">
+               <span class="opacity-70">ID:</span> <span id="profile-id-text" class="text-white group-hover:text-indigo-200 transition-colors truncate">...</span> 
+               <span id="profile-id-icon" class="text-sm bg-indigo-500/20 px-1.5 py-0.5 rounded-md ml-1 group-hover:bg-indigo-500/40 transition-colors flex items-center justify-center">📋</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mb-6">
+             <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-[24px] border border-white/5 flex flex-col items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:border-indigo-500/30 hover:shadow-[0_10px_30px_rgba(99,102,241,0.15)] transition-all duration-300 hover:-translate-y-1 group backdrop-blur-sm animate-fade-in-up" style="animation-delay: 0.1s">
+               <div class="text-2xl mb-2 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 drop-shadow-md">🎟️</div>
+               <div class="text-[22px] font-black text-white leading-none mb-1"><span id="profile-balance">0</span></div>
+               <div class="text-[10px] text-slate-400 uppercase tracking-widest font-bold text-center" data-i18n="profile.balance">Баланс</div>
+             </div>
+             
+             <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-[24px] border border-white/5 flex flex-col items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:border-purple-500/30 hover:shadow-[0_10px_30px_rgba(168,85,247,0.15)] transition-all duration-300 hover:-translate-y-1 group backdrop-blur-sm animate-fade-in-up" style="animation-delay: 0.2s">
+               <div class="text-2xl mb-2 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 drop-shadow-md">🤝</div>
+               <div class="text-[22px] font-black text-white leading-none mb-1"><span id="profile-friends">0</span></div>
+               <div class="text-[10px] text-slate-400 uppercase tracking-widest font-bold text-center" data-i18n="profile.friends">Рефералы</div>
+             </div>
+             
+             <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-[24px] border border-white/5 flex flex-col items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:border-emerald-500/30 hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] transition-all duration-300 hover:-translate-y-1 group backdrop-blur-sm animate-fade-in-up" style="animation-delay: 0.3s">
+               <div class="text-2xl mb-2 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 drop-shadow-md">🎡</div>
+               <div class="text-[22px] font-black text-white leading-none mb-1"><span id="profile-total-spins">0</span></div>
+               <div class="text-[10px] text-slate-400 uppercase tracking-widest font-bold text-center" data-i18n="profile.totalSpins">Прокрутов</div>
+             </div>
+             
+             <div class="bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-4 rounded-[24px] border border-white/5 flex flex-col items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:border-cyan-500/30 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 group backdrop-blur-sm animate-fade-in-up text-center" style="animation-delay: 0.4s">
+               <div class="text-2xl mb-2 group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-300 drop-shadow-md">📅</div>
+               <div class="text-[14px] font-black text-white leading-none mb-1"><span id="profile-reg-date">01.01.2026</span></div>
+               <div class="text-[10px] text-slate-400 uppercase tracking-widest font-bold" data-i18n="profile.regDate">Регистрация</div>
+             </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-slate-900/90 to-slate-800/90 p-5 rounded-[24px] border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.3)] relative overflow-hidden group hover:border-white/10 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.5s">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-700 group-hover:scale-150"></div>
+            
+            <div class="text-[12px] text-slate-300 uppercase tracking-widest font-black mb-4 flex items-center gap-2 drop-shadow-sm relative z-10">
+              <span class="text-lg">📦</span> <span data-i18n="profile.withdrawals">Заявки на вывод</span>
+            </div>
+            
+            <div class="flex justify-between items-center text-sm font-medium mb-3 pb-3 border-b border-slate-700/50 relative z-10">
+              <span class="text-slate-400" data-i18n="profile.reqTotal">Всего заявок:</span>
+              <span class="text-white font-black bg-slate-950 px-3 py-1 rounded-[10px] border border-slate-600/50 shadow-inner" id="profile-req-total">0</span>
+            </div>
+            
+            <div class="flex justify-between items-center text-sm font-medium mb-3 relative z-10 bg-emerald-500/5 p-2.5 rounded-xl border border-emerald-500/10 transition-colors hover:bg-emerald-500/10">
+              <span class="text-emerald-400 flex items-center gap-1.5"><span class="text-lg">✅</span> <span data-i18n="profile.reqApproved">Одобрено:</span></span>
+              <span class="text-emerald-400 font-black text-lg drop-shadow-sm" id="profile-req-approved">0</span>
+            </div>
+            
+            <div class="flex justify-between items-center text-sm font-medium relative z-10 bg-red-500/5 p-2.5 rounded-xl border border-red-500/10 transition-colors hover:bg-red-500/10">
+              <span class="text-red-400 flex items-center gap-1.5"><span class="text-lg">❌</span> <span data-i18n="profile.reqRejected">Отказано:</span></span>
+              <span class="text-red-400 font-black text-lg drop-shadow-sm" id="profile-req-rejected">0</span>
+            </div>
+          </div>
+          
+          <button id="btn-open-faq" class="w-full mt-4 py-3.5 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 rounded-2xl border border-white/10 shadow-lg flex items-center justify-center gap-2 text-indigo-200 font-bold transition-all active:scale-95 animate-fade-in-up group" style="animation-delay: 0.6s">
+            <span class="text-xl group-hover:scale-110 transition-transform">📖</span> <span data-i18n="profile.btnFaq">Частые вопросы (FAQ)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div id="modal-faq" class="modal-overlay absolute inset-0 opacity-0 transition-opacity duration-300 hidden pointer-events-auto flex items-center justify-center p-4">
+      <div class="bg-slate-900/95 backdrop-blur-2xl rounded-[32px] p-0 w-full max-w-sm border border-slate-600/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh] overflow-hidden" id="modal-faq-content">
+        <div class="flex justify-between items-center p-6 pb-4 shrink-0 border-b border-white/5 bg-slate-800/30 relative z-10">
+          <h3 class="text-xl font-black text-white flex items-center gap-2 drop-shadow-md"><span class="text-2xl animate-float-simple">📖</span> <span data-i18n="faq.title">Частые вопросы</span></h3>
+          <button class="close-modal w-8 h-8 flex justify-center items-center bg-slate-800/80 backdrop-blur-md rounded-full text-slate-400 hover:bg-slate-700 hover:text-white transition shadow-sm border border-white/5">✕</button>
+        </div>
+        <div class="overflow-y-auto flex-1 min-h-0 p-6 scrollbar-hide space-y-4 bg-gradient-to-b from-slate-900 to-slate-950 relative z-10">
+          <div class="bg-slate-800/40 rounded-2xl p-4 border border-white/5 hover:border-indigo-500/30 transition-colors shadow-sm animate-fade-in-up" style="animation-delay: 0.1s;">
+            <h4 class="text-[14px] font-black text-indigo-300 mb-2 flex items-center gap-2"><span class="text-lg">🎟️</span> <span data-i18n="faq.q1">Как получить билеты?</span></h4>
+            <p class="text-[13px] text-slate-300 leading-relaxed font-medium" data-i18n="faq.a1">Вы можете получить билеты, приглашая друзей по своей ссылке, либо выполняя задания в разделе "Задания".</p>
+          </div>
+          <div class="bg-slate-800/40 rounded-2xl p-4 border border-white/5 hover:border-indigo-500/30 transition-colors shadow-sm animate-fade-in-up" style="animation-delay: 0.2s;">
+            <h4 class="text-[14px] font-black text-indigo-300 mb-2 flex items-center gap-2"><span class="text-lg">🎁</span> <span data-i18n="faq.q2">Как забрать выигранный приз?</span></h4>
+            <p class="text-[13px] text-slate-300 leading-relaxed font-medium" data-i18n="faq.a2">Призы попадают в "Инвентарь". Для вывода нужно пригласить минимум 5 друзей и выполнить все задания. После этого нажмите на приз и отправьте заявку.</p>
+          </div>
+          <div class="bg-slate-800/40 rounded-2xl p-4 border border-white/5 hover:border-indigo-500/30 transition-colors shadow-sm animate-fade-in-up" style="animation-delay: 0.3s;">
+            <h4 class="text-[14px] font-black text-indigo-300 mb-2 flex items-center gap-2"><span class="text-lg">⏳</span> <span data-i18n="faq.q3">Когда я получу свой приз?</span></h4>
+            <p class="text-[13px] text-slate-300 leading-relaxed font-medium" data-i18n="faq.a3">После отправки заявки администратор проверит выполнение условий. Если всё верно, с вами свяжутся в боте для выдачи приза.</p>
+          </div>
+          <div class="bg-slate-800/40 rounded-2xl p-4 border border-white/5 hover:border-indigo-500/30 transition-colors shadow-sm mb-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+            <h4 class="text-[14px] font-black text-indigo-300 mb-2 flex items-center gap-2"><span class="text-lg">🎡</span> <span data-i18n="faq.q4">Что дают скины?</span></h4>
+            <p class="text-[13px] text-slate-300 leading-relaxed font-medium" data-i18n="faq.a4">Скины красиво меняют внешний вид колеса. Они открываются автоматически за приглашенных друзей (это визуальный бонус).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Settings Modal -->
     <div id="modal-settings" class="modal-overlay absolute inset-0 opacity-0 transition-opacity duration-300 hidden pointer-events-auto flex items-center justify-center p-4">
       <div class="bg-slate-900 rounded-[28px] p-6 w-full max-w-sm border border-slate-700/50 shadow-2xl transform scale-95 transition-transform duration-300" id="modal-settings-content">
         <div class="flex justify-between items-center mb-6">
           <h3 class="text-xl font-bold" data-i18n="app.settingsTitle">Настройки</h3>
-          <button class="close-modal w-8 h-8 flex justify-center items-center bg-slate-800 rounded-full text-slate-400 hover:bg-slate-700 hover:text-white transition">✕</button>
+          <button class="close-modal w-8 h-8 flex justify-center items-center bg-slate-800 rounded-full text-slate-400 hover:bg-slate-700 hover:text-white transition active:scale-95">✕</button>
         </div>
-        
-        <div class="glass-panel rounded-2xl p-4 mb-6">
-          <p class="text-sm font-medium text-indigo-200 mb-3" id="referrals-text">Приглашено: 0</p>
-          <button id="btn-invite" class="w-full py-2.5 bg-indigo-500/20 text-indigo-300 rounded-xl font-bold border border-indigo-500/30 hover:bg-indigo-500/30 transition active:scale-[0.98]">
-            <span data-i18n="app.inviteBtn">Пригласить друга (демо)</span>
-          </button>
-        </div>
+
+        <!-- Admin Access Button -->
+        <button id="btn-open-admin" class="w-full mb-6 py-3 bg-indigo-900/50 hover:bg-indigo-800/50 text-indigo-200 font-bold rounded-xl border border-indigo-500/30 transition flex items-center justify-center gap-2 active:scale-95">
+          <span>⚙️</span> <span data-i18n="admin.openAdmin">Панель администратора</span>
+        </button>
 
         <h4 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3" data-i18n="app.skinsTitle">Скины барабана</h4>
         <div id="skins-list" class="space-y-2 max-h-[40vh] overflow-y-auto pr-2"></div>
+      </div>
+    </div>
+
+    <!-- Admin User Manage Modal -->
+    <div id="modal-admin-user" class="modal-overlay absolute inset-0 opacity-0 transition-opacity duration-300 hidden pointer-events-auto flex items-center justify-center p-4">
+      <div class="bg-slate-900/95 backdrop-blur-xl rounded-[32px] p-6 w-full max-w-sm border border-slate-600/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]" id="modal-admin-user-content">
+        <div class="flex justify-between items-center mb-4 shrink-0">
+          <div>
+            <h3 class="text-lg font-bold text-white" data-i18n="admin.manageUserTitle">Управление</h3>
+            <div id="admin-user-name" class="text-xs text-indigo-300 font-medium">User Name</div>
+          </div>
+          <button class="close-modal w-8 h-8 flex justify-center items-center bg-slate-800 rounded-full text-slate-400 hover:bg-slate-700 hover:text-white transition active:scale-95">✕</button>
+        </div>
+        
+        <div class="overflow-y-auto flex-1 min-h-0 pr-2 space-y-4 pb-2 scrollbar-hide overscroll-contain">
+          <!-- Spins -->
+          <div class="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
+            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2 flex justify-between items-center">
+              <span data-i18n="admin.editSpins">Билеты (спины)</span>
+              <span>🎟️</span>
+            </label>
+            <input type="number" id="admin-edit-spins" class="w-full bg-slate-950/50 border border-slate-600/80 rounded-[14px] py-3 px-4 text-white font-bold text-center text-lg focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none transition-all shadow-inner">
+          </div>
+          
+          <!-- Ban/Unban -->
+          <div class="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
+             <label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2 block">Статус аккаунта</label>
+             <button id="admin-btn-ban" class="w-full py-2 bg-red-900/50 text-red-400 font-bold rounded-xl border border-red-500/30 transition hover:bg-red-800/50 active:scale-95" data-i18n="admin.banUser">Забанить</button>
+          </div>
+          
+          <!-- Inventory -->
+          <div class="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
+             <label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex justify-between items-center">
+               <span data-i18n="admin.inventory">Инвентарь</span>
+               <span>🎁</span>
+             </label>
+             <div id="admin-edit-inventory" class="space-y-2"></div>
+          </div>
+        </div>
+        
+        <!-- Sticky Bottom Save Button for Modal -->
+        <div class="pt-4 mt-2 border-t border-slate-700/50 shrink-0">
+          <button id="admin-btn-save-user" class="w-full py-4 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-black rounded-[18px] transition-all active:scale-[0.98] shadow-[0_10px_20px_rgba(99,102,241,0.3)] border border-indigo-400/50 text-[15px] flex justify-center items-center gap-2" >
+             <span>💾</span> <span data-i18n="admin.save">Сохранить</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div id="modal-confirm" class="modal-overlay absolute inset-0 opacity-0 transition-opacity duration-300 hidden pointer-events-auto flex items-center justify-center p-4">
+      <div class="bg-slate-900 rounded-[28px] p-6 w-full max-w-sm border border-yellow-500/30 shadow-[0_0_40px_rgba(234,179,8,0.2)] text-center transform scale-95 transition-transform duration-300" id="modal-confirm-content">
+        <div id="confirm-emoji" class="flex justify-center mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">🤔</div>
+        <h3 id="confirm-title" class="text-xl font-black mb-2 text-white">Подтверждение</h3>
+        <div id="confirm-text" class="text-slate-300 mb-6 text-sm font-medium">Текст</div>
+        <div class="flex gap-3">
+          <button class="close-modal flex-1 py-3.5 bg-slate-800 rounded-2xl font-bold text-slate-300 hover:bg-slate-700 transition active:scale-[0.98]" data-i18n="app.btnCancel">Отмена</button>
+          <button id="btn-confirm-action" class="flex-1 py-3.5 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-2xl font-black text-white hover:opacity-90 transition active:scale-[0.98] shadow-lg shadow-yellow-600/30" data-i18n="app.btnConfirm">Отправить</button>
+        </div>
       </div>
     </div>
 
@@ -194,14 +473,14 @@
       <div class="bg-slate-900 rounded-[28px] p-6 w-full max-w-sm border border-indigo-500/30 shadow-[0_0_40px_rgba(99,102,241,0.2)] text-center transform scale-95 transition-transform duration-300" id="modal-alert-content">
         <div id="alert-emoji" class="text-6xl mb-4 animate-bounce drop-shadow-lg flex justify-center">💬</div>
         <h3 id="alert-title" class="text-xl font-black mb-2 text-white">Уведомление</h3>
-        <p id="alert-text" class="text-slate-300 mb-6 text-sm font-medium">Текст</p>
+        <div id="alert-text" class="text-slate-300 mb-6 text-sm font-medium">Текст</div>
         <button class="close-modal w-full py-3.5 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl font-black text-white hover:opacity-90 transition active:scale-[0.98] shadow-lg shadow-indigo-500/30" data-i18n="app.awesome">Отлично!</button>
       </div>
     </div>
   </div>
 
   <!-- PREMIUM TELEGRAM REVEAL MODAL -->
-  <div id="modal-reveal" class="fixed inset-0 z-[100] hidden flex-col items-center justify-center bg-slate-950/95 backdrop-blur-2xl transition-opacity duration-500 opacity-0 pointer-events-none overflow-hidden">
+  <div id="modal-reveal" class="fixed inset-0 z-[100] hidden flex flex-col items-center justify-center bg-slate-950/95 backdrop-blur-2xl transition-opacity duration-500 opacity-0 pointer-events-none overflow-hidden">
     <div id="reveal-rays" class="tg-rays opacity-0 transition-opacity duration-1000"></div>
     <div id="reveal-flash" class="absolute inset-0 pointer-events-none z-10"></div>
     <div id="reveal-content" class="relative z-20 flex flex-col items-center justify-center transform scale-90 transition-transform duration-500 w-full px-4">
@@ -219,6 +498,164 @@
     </div>
   </div>
 
+  <!-- ADMIN PANEL OVERLAY -->
+  <div id="admin-panel" class="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-2xl hidden flex flex-col overflow-hidden transition-transform duration-400 translate-y-full">
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 bg-slate-900/80 backdrop-blur-md border-b border-white/5 shrink-0 shadow-md z-30 relative">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl drop-shadow-md">👨‍💻</span>
+        <h2 class="text-xl font-black text-white" data-i18n="admin.title">Админ-панель</h2>
+      </div>
+      <button id="btn-close-admin" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold text-sm transition shadow-sm active:scale-95" data-i18n="admin.exit">Выйти</button>
+    </header>
+    
+    <!-- Content -->
+    <div class="flex-1 relative min-h-0 overflow-hidden bg-gradient-to-b from-slate-950 to-[#0f172a]">
+       
+       <!-- DASHBOARD -->
+       <div id="admin-dash" class="admin-view active absolute inset-0 flex flex-col overflow-hidden">
+         <div class="flex-1 overflow-y-auto p-4 pb-6 scrollbar-hide overscroll-contain flex flex-col gap-4">
+           <div class="grid grid-cols-2 gap-3">
+             <div class="bg-indigo-900/30 border border-indigo-500/30 rounded-2xl p-5 flex flex-col justify-center items-center backdrop-blur-md shadow-lg group hover:bg-indigo-900/40 transition animate-fade-in-up" style="animation-delay: 0.05s;">
+               <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">👥</div>
+               <div class="text-2xl font-black text-white">1,245</div>
+               <div class="text-[10px] text-indigo-300 uppercase tracking-widest font-bold mt-1" data-i18n="admin.statUsers">Всего юзеров</div>
+             </div>
+             <div class="bg-purple-900/30 border border-purple-500/30 rounded-2xl p-5 flex flex-col justify-center items-center backdrop-blur-md shadow-lg group hover:bg-purple-900/40 transition animate-fade-in-up" style="animation-delay: 0.1s;">
+               <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">🎡</div>
+               <div class="text-2xl font-black text-white" id="admin-stat-spins">45,120</div>
+               <div class="text-[10px] text-purple-300 uppercase tracking-widest font-bold mt-1" data-i18n="admin.statSpins">Кручений</div>
+             </div>
+           </div>
+           <div class="bg-emerald-900/30 border border-emerald-500/30 rounded-2xl p-6 flex flex-col justify-center items-center backdrop-blur-md shadow-lg group hover:bg-emerald-900/40 transition animate-fade-in-up" style="animation-delay: 0.15s;">
+             <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">🎁</div>
+             <div class="text-4xl font-black text-white">8,430</div>
+             <div class="text-[12px] text-emerald-300 uppercase tracking-widest font-bold mt-1" data-i18n="admin.statPrizes">Выдано призов</div>
+           </div>
+         </div>
+       </div>
+
+       <!-- MANAGE -->
+       <div id="admin-manage" class="admin-view hidden absolute inset-0 flex flex-col overflow-hidden">
+         <div class="flex-1 overflow-y-auto p-4 pb-6 scrollbar-hide overscroll-contain">
+           <div class="bg-indigo-900/20 border border-indigo-500/30 rounded-2xl p-4 mb-4 flex items-center gap-3 backdrop-blur-sm shadow-sm animate-fade-in-up" style="animation-delay: 0.05s;">
+             <span class="text-3xl drop-shadow-md animate-float-3d">⚖️</span>
+             <div>
+               <h3 class="text-[15px] font-bold text-white leading-tight" data-i18n="admin.managePrizes">Настройка шансов</h3>
+               <p class="text-[11px] text-indigo-300/80 mt-0.5 leading-tight font-medium">Чем выше вес, тем чаще выпадает приз</p>
+             </div>
+           </div>
+           <div id="admin-manage-list" class="flex flex-col gap-2.5"></div>
+         </div>
+         <!-- Sticky Footer Button -->
+         <div class="p-4 bg-slate-900/90 backdrop-blur-xl border-t border-white/10 shrink-0 shadow-[0_-10px_30px_rgba(0,0,0,0.6)] z-20">
+            <button id="btn-save-manage" class="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-black rounded-2xl transition-all active:scale-[0.98] shadow-[0_10px_20px_rgba(16,185,129,0.3)] border border-emerald-400/50 flex justify-center items-center gap-2">
+              <span class="text-xl">💾</span> <span data-i18n="admin.save">Сохранить изменения</span>
+            </button>
+         </div>
+       </div>
+
+       <!-- TASKS (ADMIN) -->
+       <div id="admin-task-manage" class="admin-view hidden absolute inset-0 flex flex-col overflow-hidden">
+         <div class="flex-1 overflow-y-auto p-4 pb-6 scrollbar-hide overscroll-contain">
+           <div class="bg-indigo-900/20 border border-indigo-500/30 rounded-2xl p-4 mb-5 backdrop-blur-sm shadow-sm animate-fade-in-up" style="animation-delay: 0.05s;">
+             <h3 class="text-[15px] font-bold text-white mb-3 flex items-center gap-2"><span>➕</span> <span data-i18n="admin.addTaskTitle">Добавить задание</span></h3>
+             <div class="flex flex-col gap-3">
+               <div class="flex gap-3">
+                 <input type="text" id="new-task-icon" class="w-16 bg-slate-950/60 border border-slate-700/80 rounded-xl py-3 px-3 text-white text-center text-lg focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition placeholder-slate-500 shadow-inner" placeholder="Эмодзи" data-i18n-placeholder="admin.icon">
+                 <div class="flex-1 relative">
+                    <input type="number" id="new-task-reward" class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl py-3 pl-4 pr-10 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition placeholder-slate-500 shadow-inner font-bold" placeholder="Награда" data-i18n-placeholder="admin.reward">
+                    <span class="absolute right-3 top-3 text-lg animate-pulse-glow">🎟️</span>
+                 </div>
+               </div>
+               <input type="text" id="new-task-title" class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl py-3 px-4 text-white text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition placeholder-slate-500 shadow-inner" placeholder="Название задания" data-i18n-placeholder="admin.taskTitlePlaceholder">
+               <input type="text" id="new-task-url" class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl py-3 px-4 text-white text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition placeholder-slate-500 shadow-inner" placeholder="Ссылка (необязательно)" data-i18n-placeholder="admin.taskUrlPlaceholder">
+               <button id="btn-add-task" class="w-full py-3.5 mt-1 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white font-black rounded-xl transition-all active:scale-[0.98] shadow-md border border-indigo-400/50" data-i18n="admin.btnAddTask">Добавить</button>
+             </div>
+           </div>
+           <h3 class="text-[15px] font-bold text-white mb-3 animate-fade-in-up" style="animation-delay: 0.1s;" data-i18n="admin.currentTasks">Текущие задания</h3>
+           <div id="admin-tasks-list" class="flex flex-col gap-2.5"></div>
+         </div>
+       </div>
+
+       <!-- WITHDRAWALS -->
+       <div id="admin-withdrawals" class="admin-view hidden absolute inset-0 flex flex-col overflow-hidden">
+         <div class="p-4 bg-slate-900/60 backdrop-blur-xl border-b border-white/5 shrink-0 z-10 shadow-sm flex justify-between items-center">
+           <h3 class="text-white font-bold text-[16px]" data-i18n="admin.withdrawalsTitle">Заявки на вывод</h3>
+         </div>
+         <div class="flex-1 overflow-y-auto p-4 pb-6 scrollbar-hide overscroll-contain relative">
+           <div id="admin-withdrawals-list" class="flex flex-col gap-3"></div>
+         </div>
+       </div>
+
+       <!-- USERS -->
+       <div id="admin-users" class="admin-view hidden absolute inset-0 flex flex-col overflow-hidden">
+         <div class="p-4 bg-slate-900/60 backdrop-blur-xl border-b border-white/5 shrink-0 z-10 shadow-sm">
+           <div class="relative">
+             <input type="text" id="admin-user-search" class="w-full bg-slate-950 border border-slate-700 rounded-[14px] py-3.5 pl-11 pr-4 text-white text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition shadow-inner placeholder-slate-500" placeholder="Поиск по имени или ID..." data-i18n-placeholder="admin.searchUser">
+             <span class="absolute left-3.5 top-3.5 text-slate-400 text-lg">🔍</span>
+           </div>
+         </div>
+         <div class="flex-1 overflow-y-auto p-4 pb-6 scrollbar-hide overscroll-contain relative">
+           <div id="admin-users-list" class="flex flex-col gap-2.5"></div>
+         </div>
+       </div>
+
+       <!-- BROADCAST -->
+       <div id="admin-broadcast" class="admin-view hidden absolute inset-0 flex flex-col overflow-hidden">
+         <div class="flex-1 overflow-y-auto p-4 pb-6 scrollbar-hide overscroll-contain">
+           <div class="glass-card rounded-2xl p-4 mb-4 animate-fade-in-up" style="animation-delay: 0.05s;">
+             <textarea id="broadcast-text" class="w-full h-36 bg-slate-950/60 border border-slate-700/80 rounded-xl p-4 text-white text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none transition resize-none mb-2 placeholder-slate-500 shadow-inner leading-relaxed" placeholder="Текст рассылки..." data-i18n-placeholder="admin.broadcastMsg"></textarea>
+             <div class="text-[11px] text-slate-400 mb-6 leading-tight bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50" data-i18n="admin.tagsHelp">💡 Поддерживается HTML: &lt;b&gt;жирный&lt;/b&gt;, &lt;i&gt;курсив&lt;/i&gt;, &lt;a href="..."&gt;ссылка&lt;/a&gt;</div>
+             
+             <h4 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+               <span>🔗</span> Инлайн-кнопка <span class="text-slate-500">(опционально)</span>
+             </h4>
+             <div class="flex flex-col gap-3">
+               <input type="text" id="broadcast-btn-text" class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl py-3.5 px-4 text-white text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none transition placeholder-slate-500 shadow-inner" placeholder="Текст кнопки" data-i18n-placeholder="admin.addBtnText">
+               <input type="text" id="broadcast-btn-url" class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl py-3.5 px-4 text-white text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none transition placeholder-slate-500 shadow-inner" placeholder="https://t.me/..." data-i18n-placeholder="admin.addBtnUrl">
+             </div>
+           </div>
+         </div>
+         <!-- Sticky Footer Button -->
+         <div class="p-4 bg-slate-900/90 backdrop-blur-xl border-t border-white/10 shrink-0 shadow-[0_-10px_30px_rgba(0,0,0,0.6)] z-20">
+           <button id="btn-send-broadcast" class="w-full py-4 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 rounded-2xl font-black text-[15px] text-white transition-all active:scale-[0.98] shadow-[0_10px_20px_rgba(168,85,247,0.3)] border border-purple-400/50 flex justify-center items-center gap-2">
+             <span class="text-xl">🚀</span>
+             <span data-i18n="admin.send">Отправить всем</span>
+           </button>
+         </div>
+       </div>
+
+    </div>
+
+    <!-- Admin Bottom Nav -->
+    <nav class="shrink-0 flex justify-around items-center bg-slate-900/90 backdrop-blur-2xl border-t border-white/10 pt-2 px-1 z-30 relative shadow-[0_-10px_40px_rgba(0,0,0,0.6)]" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));">
+      <button class="admin-tab-btn flex flex-col items-center p-2 text-indigo-400 scale-110 -translate-y-1 transition-all duration-300 relative z-10" data-target="admin-dash">
+        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        <span class="text-[10px] font-bold tracking-wide" data-i18n="admin.tabDash">Дашборд</span>
+      </button>
+      <button class="admin-tab-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="admin-manage">
+        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        <span class="text-[10px] font-bold tracking-wide" data-i18n="admin.tabManage">Управление</span>
+      </button>
+            <button class="admin-tab-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="admin-task-manage">
+        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+        <span class="text-[10px] font-bold tracking-wide" data-i18n="admin.tabTasks">Задания</span>
+      </button>
+<button class="admin-tab-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="admin-users">
+        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        <span class="text-[10px] font-bold tracking-wide" data-i18n="admin.tabUsers">Юзеры</span>
+      </button>
+      <button class="admin-tab-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="admin-broadcast">
+        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+        <span class="text-[10px] font-bold tracking-wide" data-i18n="admin.tabBroadcast">Рассылка</span>
+      </button>
+      <button class="admin-tab-btn flex flex-col items-center p-2 text-slate-500 hover:text-indigo-300 transition-all duration-300 relative z-10" data-target="admin-withdrawals">
+        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+        <span class="text-[10px] font-bold tracking-wide" data-i18n="admin.tabWithdrawals">Заявки</span>
+      </button>
+    </nav>
+  </div>
   <script src="main.js"></script>
 </body>
-  </html>
+</html>
