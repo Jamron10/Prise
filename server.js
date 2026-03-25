@@ -18,7 +18,7 @@ const cors = require('cors');
 const { Telegraf } = require('telegraf');
 
 // --- КОНФИГУРАЦИЯ ---
-const BOT_TOKEN = 'ВАШ_ТОКЕН_ОТ_БОTFATHER';
+const BOT_TOKEN = '7962893528:AAF5ikJWt5k6_CP2ugwVimqpUaybPB3hhO8';
 const MONGO_URI = 'mongodb+srv://prize:narek5551@cluster0.ucx8kac.mongodb.net/?appName=Cluster0'; // Ваша ссылка на MongoDB
 const PORT = process.env.PORT || 3000;
 
