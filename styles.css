@@ -18,6 +18,13 @@ button {
 ::-webkit-scrollbar {
   display: none;
 }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 .modal-overlay {
   background: rgba(0, 0, 0, 0.6);
@@ -25,13 +32,38 @@ button {
   -webkit-backdrop-filter: blur(8px);
 }
 
-.tab-view {\n  height: 100%;\n  overflow-y: auto;\n}
+.tab-view {
+  height: 100%;
+  overflow-y: auto;
+}
 
 /* Glass effect for active elements */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(145deg, rgba(30,41,59,0.6) 0%, rgba(15,23,42,0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.admin-tab-btn {
+  flex: 1;
+  min-width: 0;
+}
+.admin-tab-btn span {
+  font-size: 9px;
+  margin-top: 2px;
+}
+.admin-tab-btn svg {
+  width: 22px;
+  height: 22px;
 }
 
 /* Base Animations */
@@ -44,9 +76,40 @@ button {
   animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.admin-view.active {
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-pop-in {
+  animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(99,102,241,0.6); transform: scale(1); }
-  50% { box-shadow: 0 0 35px rgba(99,102,241,1); transform: scale(1.05); }
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(99,102,241,0.5)); }
+  50% { filter: drop-shadow(0 0 25px rgba(99,102,241,1)); }
 }
 
 .animate-pulse-glow {
@@ -140,4 +203,15 @@ button {
 .animate-float-simple {
   animation: float-simple 3s ease-in-out infinite;
   will-change: transform;
-           }
+}
+
+@keyframes shimmer-slide {
+  0% { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(200%) skewX(-12deg); }
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
