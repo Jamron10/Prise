@@ -1,0 +1,19 @@
+{
+  "name": "gift-wheel-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Gift Wheel Miniapp",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.0",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
